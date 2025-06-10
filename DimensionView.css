@@ -1,0 +1,56 @@
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+#canvas-container {
+    overflow: hidden; /* This is crucial to contain the dragged items */
+}
+#canvas {
+    background-image:
+        linear-gradient(to right, #e5e7eb 1px, transparent 1px),
+        linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+.canvas-item {
+    position: absolute;
+    cursor: grab;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    touch-action: none;
+    border: 2px solid transparent;
+}
+.canvas-item.selected {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+}
+.canvas-item.ui-dragging {
+    cursor: grabbing;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    opacity: 0.8;
+    z-index: 100;
+}
+
+/* Make credit card animation responsive */
+#credit-card-anim {
+    width: 85.6px;
+    height: 53.98px;
+    max-width: 40vw; /* Add max-width relative to viewport */
+    max-height: calc(40vw * (53.98 / 85.6)); /* Maintain aspect ratio */
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+.notification { transition: opacity 0.5s, transform 0.5s; }
+
+#measurement-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    cursor: crosshair;
+    pointer-events: none;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DimensionView | Investor Demo</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="DimensionView.css">
+</head>
+<body class="bg-gray-100 text-gray-800 flex items-center justify-center h-screen overflow-hidden">
+
+    <div id="app-container" class="w-full h-full lg:w-[95%] lg:h-[95%] lg:max-w-7xl lg:rounded-2xl shadow-2xl bg-white flex flex-col overflow-hidden">
+        
+        <header class="flex items-center justify-between p-4 border-b border-gray-200 bg-white z-40">
+            <div class="flex items-center gap-3">
+                <button id="menu-toggle-btn" class="p-2 rounded-md hover:bg-gray-100 md:hidden">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+                <div>
+                    <h1 class="font-bold text-2xl">
+                        <span class="text-gray-900">Dimension</span><span class="text-blue-600">View</span>
+                    </h1>
+                    <p class="text-xs text-gray-500">Investor Presentation Demo</p>
+                </div>
+            </div>
+            <button id="reset-demo-btn" class="px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">Reset Demo</button>
+        </header>
+        
+        <main class="flex-1 flex md:flex-row overflow-hidden relative">
+            
+            <aside id="sidebar" class="transform -translate-x-full md:translate-x-0 w-full md:w-80 lg:w-96 p-4 bg-gray-50 border-r border-gray-200 overflow-y-auto absolute md:relative z-30 h-full transition-transform duration-300 ease-in-out">
+                <div class="mb-4">
+                    <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2">Select Store</h2>
+                    <div id="store-selector" class="grid grid-cols-3 gap-2">
+                        </div>
+                </div>
+
+                <div class="relative mb-4">
+                    <input type="text" id="search-bar" placeholder="Search products..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <svg class="w-5 h-5 text-gray-400 absolute top-1/2 left-3 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+
+                <div class="flex items-center gap-2 mb-4 pt-4 border-t border-gray-200">
+                     <img id="store-logo" src="" alt="Store Logo" class="rounded-lg w-10 h-10">
+                    <div>
+                        <h2 id="store-name" class="font-bold text-lg"></h2>
+                        <p class="text-sm text-gray-500">Men's & Women's Apparel</p>
+                    </div>
+                </div>
+                <div id="product-list" class="space-y-3"></div>
+            </aside>
+            
+            <div id="sidebar-overlay" class="hidden md:hidden absolute inset-0 bg-black/50 z-20"></div>
+
+            <div class="flex-1 flex flex-col relative bg-white">
+                <div id="canvas-container" class="flex-1 relative">
+                    <div id="canvas" class="absolute inset-0"></div>
+                    <canvas id="measurement-canvas"></canvas>
+                    <div id="item-info-panel" class="hidden absolute bottom-4 left-4 bg-white/80 backdrop-blur-sm p-3 rounded-lg shadow-md border border-gray-200 pointer-events-none">
+                        <h4 class="font-bold text-sm mb-1">Item Dimensions</h4>
+                        <p class="text-xs text-gray-700" id="item-info-text"></p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-center gap-6 p-3 border-t border-gray-200 bg-white/80 backdrop-blur-sm">
+                     <div class="flex items-center gap-3">
+                        <span class="text-sm font-semibold text-gray-600">Zoom</span>
+                        <input type="range" id="scale-slider" min="0.5" max="2.5" value="1" step="0.1" class="w-32">
+                        <span id="scale-value" class="font-bold text-sm text-gray-800 w-16 text-center">1.0x</span>
+                     </div>
+                     <div class="border-l border-gray-300 h-8"></div>
+                     <div class="flex items-center gap-3">
+                        <span class="text-sm font-semibold text-gray-600">Tools</span>
+                        <button id="measure-btn" class="px-3 py-1.5 text-sm font-semibold text-gray-700 bg-gray-200 hover:bg-blue-500 hover:text-white rounded-lg transition-colors flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 7.001l9-3a5.002 5.002 0 002.995-7.995l-9-3A5.002 5.002 0 006 7l-3 1z"></path></svg>
+                            Measure
+                        </button>
+                     </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="overlays-container" class="absolute inset-0 pointer-events-none">
+        <div id="notification-container" class="absolute top-5 right-5 z-[100] space-y-2"></div>
+        <div id="welcome-modal" class="absolute inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50 p-4 pointer-events-auto">
+            <div class="bg-white rounded-2xl shadow-xl p-8 max-w-lg text-center transform transition-all scale-100 opacity-100">
+                <div class="w-16 h-16 mx-auto bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-3xl mb-4">DV</div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Welcome to DimensionView</h2>
+                <p class="text-gray-600 mb-6">This demo showcases how DimensionView solves the biggest problem in online shopping: sizing uncertainty. You'll see how we project products in their true, real-world size.</p>
+                <button id="start-demo-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-transform hover:scale-105">Start the Demo</button>
+            </div>
+        </div>
+        <div id="calibration-modal" class="hidden absolute inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50 p-4 pointer-events-auto">
+            <div class="bg-white rounded-2xl shadow-xl p-8 max-w-lg text-center transform transition-all">
+                <div id="calibration-choice-view">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Step 1: Screen Calibration</h2>
+                    <p class="text-gray-600 mb-6">For accurate sizing, please choose a calibration method.</p>
+                    <div class="space-y-3">
+                         <button id="auto-calibrate-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-transform hover:scale-105">Auto-Calibrate (Quick)</button>
+                         <button id="manual-calibrate-btn" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg transition-colors">Manual Calibration (Precise)</button>
+                    </div>
+                </div>
+                <div id="calibration-manual-view" class="hidden">
+                     <h2 class="text-2xl font-bold text-gray-900 mb-2">Manual Calibration</h2>
+                    <p class="text-gray-600 mb-6">Hold a standard credit card to the screen and adjust the slider until the image size matches.</p>
+                    <div class="my-8 flex justify-center items-center">
+                        <div id="credit-card-anim" class="bg-gradient-to-br from-blue-400 to-indigo-500 rounded-md shadow-lg border-2 border-white/50 relative transition-all duration-150">
+                            <span class="absolute top-2 left-3 font-bold text-white text-xs opacity-70">BANK</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zM12 11a1 1 0 100 2h-4a1 1 0 100-2h4z" /></svg>
+                        <input type="range" id="calibration-slider" min="0.5" max="2.0" value="1" step="0.01" class="w-full">
+                        <svg class="h-8 w-8 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zM12 11a1 1 0 100 2h-4a1 1 0 100-2h4z" /></svg>
+                    </div>
+                    <button id="finish-calibration-btn" class="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-transform hover:scale-105">Confirm Calibration</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="DimensionView.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DimensionView - See Your Fit Before It Ships</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">Dimension<span>View</span></div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <nav class="main-nav" id="main-nav">
+                <a href="#about">About</a>
+                <a href="#hardware">The Product</a>
+                <a href="#features">How It Works</a>
+                <a href="#pricing">Pricing</a>
+                <a href="../DimensionView.html">Demo</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Stop Guessing. Start Seeing.</h1>
+                    <p class="lead">Stop the guesswork in online shopping. DimensionView shows you the true size of clothes on your screen, reducing returns and waste.</p>
+                    <a href="../DimensionView.html" class="btn">Try the Live Demo</a>
+                </div>
+                <div class="hero-image-container">
+                    <img src="https://placehold.co/1200x800/007bff/white?text=DimensionView+Product" alt="DimensionView Product and Remote" class="product-image" title="DimensionView Product">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container section">
+        <h2 class="section-title">The End of "Will It Fit?"</h2>
+        <p class="section-lead">Tired of confusing size charts and returning clothes that don't fit? DimensionView projects the real size of clothing on your screen, so you can shop confidently and reduce fashion waste. Built for savvy shoppers who want convenience and sustainability.</p>
+    </section>
+
+    <section id="hardware" class="section alt-bg">
+        <div class="container">
+            <div class="two-col-layout">
+                <div class="col-image">
+                    <img src="https://placehold.co/800x700/333/white?text=DimensionView+Stick+%26+Remote" alt="The DimensionView HDMI Stick and Remote" class="product-image-feature">
+                </div>
+                <div class="col-text">
+                    <h2 class="section-title-left">Simple, Powerful Hardware</h2>
+                    <p>DimensionView is a compact HDMI stick built to do one thing perfectly. Just plug it into any screen's HDMI port, connect to Wi-Fi, and you’re ready. The included remote makes navigation effortless.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="grid-3">
+                <div class="feature-card">
+                    <div class="feature-icon">🔌</div>
+                    <h3>1. Simple Setup</h3>
+                    <p>Plug the HDMI stick into any screen, connect to Wi-Fi, and start viewing. It's that simple.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📏</div>
+                    <h3>2. Real-Size Projection</h3>
+                    <p>Our software projects a true-to-size 2D image of clothing on your screen. A quick calibration ensures perfect accuracy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👕</div>
+                    <h3>3. Confident Comparison</h3>
+                    <p>Hold your own clothes up to the screen to compare sizes directly. See how items measure up before you buy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="section alt-bg">
+        <div class="container">
+            <h2 class="section-title">Ready to See the Difference?</h2>
+            <p class="section-lead">One-time purchase. No subscriptions, no hidden fees.</p>
+            <div class="pricing-card">
+                <h3>DimensionView Kit</h3>
+                <p class="price">$50</p>
+                <p class="price-desc">Includes the DimensionView HDMI Stick and Remote Control.</p>
+                <a href="#" class="btn">Order Now</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 FedEx ITC CREDIT | Waseda University Senior High School. Product: DimensionView.</p>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.getElementById('nav-toggle');
+        const mainNav = document.getElementById('main-nav');
+        navToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('nav-open');
+            navToggle.classList.toggle('is-active');
+        });
+    </script>
+</body>
+</html>
