@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarOverlay = document.getElementById('sidebar-overlay');
 
     // --- State Variables ---
-    let pixelsPerCm = 38; 
+    let pixelsPerCm = 3; 
     let isCalibrated = false;
     let isMeasuring = false;
     let measureStart = {};
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         autoCalibrateBtn.addEventListener('click', () => {
-            pixelsPerCm = 38;
+            pixelsPerCm = 3;
             isCalibrated = true;
             calibrationModal.style.display = 'none';
             showNotification("Auto-calibration complete!");
@@ -185,8 +185,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         finishCalibrationBtn.addEventListener('click', () => {
-            const cardWidthInPixels = creditCardAnim.getBoundingClientRect().width;
-            pixelsPerCm = cardWidthInPixels / 8.56;
+            // MODIFICATION START
+            // The calculation is disabled and a fixed value is used instead
+            // to ensure a consistent demo experience on all devices.
+            // const cardWidthInPixels = creditCardAnim.getBoundingClientRect().width;
+            // pixelsPerCm = cardWidthInPixels / 8.56;
+            pixelsPerCm = 3; // Enforce the same value as auto-calibration
+            // MODIFICATION END
+
             isCalibrated = true;
             calibrationModal.style.display = 'none';
             showNotification("Manual calibration complete!");
