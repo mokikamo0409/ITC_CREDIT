@@ -157,7 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p class="text-xs text-gray-500 mt-1">Size M: ${product.width}cm x ${product.height}cm</p>
                     </div>
                 </div>
-                <button data-product-id="${product.id}" class="view-btn mt-3 w-full bg-blue-100 text-blue-700 hover:bg-blue-200 font-bold py-2 px-4 rounded-lg transition-colors text-sm">View in DimensionView</button>
+                <div class="flex mt-3 gap-2">
+                    <button data-product-id="${product.id}" class="view-btn w-full bg-blue-100 text-blue-700 hover:bg-blue-200 font-bold py-2 px-4 rounded-lg transition-colors text-sm">View in DimensionView</button>
+                    <button class="w-full bg-green-100 text-green-700 hover:bg-green-200 font-bold py-2 px-4 rounded-lg transition-colors text-sm">Purchase</button>
+                </div>
             </div>
         `).join('');
     };
