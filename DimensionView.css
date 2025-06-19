@@ -54,3 +54,16 @@ body {
     cursor: crosshair;
     pointer-events: none;
 }
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-btn:hover svg {
+  animation: rotate 2s linear infinite;
+}
