@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- DOM Element Selection ---
     const welcomeModal = document.getElementById('welcome-modal');
     const startDemoBtn = document.getElementById('start-demo-btn');
     const calibrationModal = document.getElementById('calibration-modal');
@@ -28,19 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const itemInfoPanel = document.getElementById('item-info-panel');
     const itemInfoText = document.getElementById('item-info-text');
     
-    // Mobile Sidebar Elements
     const menuToggleBtn = document.getElementById('menu-toggle-btn');
     const sidebar = document.getElementById('sidebar');
     const sidebarOverlay = document.getElementById('sidebar-overlay');
 
-    // --- State Variables ---
     let pixelsPerCm = 3; 
     let isCalibrated = false;
     let isMeasuring = false;
     let measureStart = {};
     let activeStore = 'taobao';
 
-    // --- Data ---
     const stores = {
         taobao: {
             name: "Taobao",
@@ -74,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- Functions ---
     const init = () => {
         renderStoreSelector();
         setActiveStore(activeStore);
@@ -188,13 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         finishCalibrationBtn.addEventListener('click', () => {
-            // MODIFICATION START
-            // The calculation is disabled and a fixed value is used instead
-            // to ensure a consistent demo experience on all devices.
             // const cardWidthInPixels = creditCardAnim.getBoundingClientRect().width;
             // pixelsPerCm = cardWidthInPixels / 8.56;
             pixelsPerCm = 3; // Enforce the same value as auto-calibration
-            // MODIFICATION END
 
             isCalibrated = true;
             calibrationModal.style.display = 'none';
@@ -219,7 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target.classList.contains('view-btn')) {
                 const products = stores[activeStore].products;
                 createCanvasItem(products.find(p => p.id === e.target.dataset.productId));
-                // On mobile, close sidebar after selection
                 if (window.innerWidth < 768) { // Tailwind's `md` breakpoint
                     toggleSidebar();
                 }
@@ -234,11 +224,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Sidebar toggle listeners
+        // Sidebar toggle
         menuToggleBtn.addEventListener('click', toggleSidebar);
         sidebarOverlay.addEventListener('click', toggleSidebar);
 
-        // Measurement listeners
+        // Measurement 
         measurementCanvas.addEventListener('mousedown', measureStartHandler);
         measurementCanvas.addEventListener('touchstart', measureStartHandler);
         measurementCanvas.addEventListener('mousemove', measureMoveHandler);
@@ -314,7 +304,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         function dragStart(e) {
             if (isMeasuring) return;
-            // e.preventDefault(); // This can interfere with touch scrolling, let elementDrag handle it
 
             startTop = element.offsetTop;
             startLeft = element.offsetLeft;
@@ -454,7 +443,5 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         measureStart = {};
     }
-
-    // --- Initialisation ---
     init();
 });
