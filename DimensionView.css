@@ -4,8 +4,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 #canvas-container {
-    overflow: hidden; /* This is crucial to contain the dragged items */
-}
+    overflow: hidden; 
 #canvas {
     background-image:
         linear-gradient(to right, #e5e7eb 1px, transparent 1px),
@@ -33,12 +32,11 @@ body {
     z-index: 100;
 }
 
-/* Make credit card animation responsive */
 #credit-card-anim {
     width: 85.6px;
     height: 53.98px;
-    max-width: 40vw; /* Add max-width relative to viewport */
-    max-height: calc(40vw * (53.98 / 85.6)); /* Maintain aspect ratio */
+    max-width: 40vw; 
+    max-height: calc(40vw * (53.98 / 85.6)); 
 }
 
 ::-webkit-scrollbar { width: 5px; height: 5px; }
